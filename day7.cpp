@@ -24,3 +24,55 @@ Constraints:
 1 ≤ N ≤ 105 
 -104  ≤ a[i] ≤ 104
 */
+// { Driver Code Starts
+//Initial Template for C++
+
+#include <bits/stdc++.h> 
+using namespace std; 
+
+ // } Driver Code Ends
+
+
+//User function Template for C++
+
+
+class Solution{
+    
+    public:
+    long long ValidPair(int a[], int n) 
+    { 
+    	sort(a,a+n);
+    	int ctr=0,ptr=n-1;
+    	for(int i=0; i<n; i++)
+    	{
+    	    while(ptr>i && a[ptr]+a[i]>0)ptr--;
+    	    if(i>=ptr)
+    	        ctr+=n-1-i;
+    	    else
+    	        ctr+=n-1-ptr;
+    	}
+    	// Your code goes here 
+    	return ctr;
+    }   
+};
+
+// { Driver Code Starts.
+
+int main() 
+{ 
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n;
+		cin>>n;
+		int array[n];
+		for (int i = 0; i < n; ++i)
+			cin>>array[i];
+	    Solution obj;
+		cout << obj.ValidPair(array, n) <<"\n";
+	}
+	return 0; 
+} 
+
+  // } Driver Code Ends
