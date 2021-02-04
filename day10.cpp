@@ -23,3 +23,57 @@ Expected Auxiliary Space: O(1)
 Constraints:
 1 ≤ |A|, |B| ≤ 103
 */
+// { Driver Code Starts
+//Initial Template for C++
+
+#include <bits/stdc++.h>
+using namespace std;
+
+
+
+ // } Driver Code Ends
+
+
+class Solution{
+
+    public:
+    int repeatedStringMatch(string A, string B) 
+    {
+        int nA=A.length(),nB=B.length();
+        for(int i =0; i <nA;i++)
+        {
+            if(A.at(i)!=B.at(0))continue;
+            int ptrA= i +1 ,ptrB=1;
+            while(ptrB<nB)
+            {
+                if(B.at(ptrB)==A.at(ptrA%nA))
+                {
+                    ptrA++;
+                    ptrB++;
+                }else if(ptrA>=nA)return -1;
+                else break;
+            }
+            if (ptrB==nB)return ceil(1.0*ptrA/nA);
+        }
+        return -1;
+    }
+  
+};
+
+// { Driver Code Starts.
+
+
+int main(){
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        string A,B;
+        cin>>A;
+        cin>>B;
+        Solution obj;
+        cout<<obj.repeatedStringMatch(A,B)<<"\n";
+    }
+    return 0;
+}
+  // } Driver Code Ends
