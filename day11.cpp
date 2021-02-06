@@ -29,3 +29,57 @@ Expected Auxiliary Space: O(N)
 Constraints: 
 1 ≤ |S| ≤ 105
 */
+// { Driver Code Starts
+//Initial Template for C++
+
+#include <bits/stdc++.h>
+using namespace std;
+
+
+ // } Driver Code Ends
+
+
+//User function Template for C++
+
+// return a string formed by compressing string s
+// do not print anything
+
+class Solution{
+    public:
+    string compress(string s)
+    {
+        int ptr=s.length()-1;
+        string str="";
+        while(ptr>0)
+        {
+            if(ptr%2==0)
+               str= s.at(ptr--)+str;
+            else
+               if (s.substr(0,ptr/2+1)==s.substr(ptr/2+1,ptr/2+1)){
+                    str="*"+str;
+                    ptr=ptr/2;
+               }else
+                str= s.at(ptr--)+str;
+        }
+        str=s.at(0)+str;
+        return str;
+    }
+};
+
+
+// { Driver Code Starts.
+
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        string s;
+        cin>>s;
+        Solution obj;
+        cout<< obj.compress(s) << "\n";
+    }
+    return 0;
+}
+  // } Driver Code Ends
